@@ -1,7 +1,7 @@
 {
   "name": "reactive-strain-menu",
   "version": "1.0.0",
-  "description": "<<<<<<< HEAD # Getting Started with Create React App",
+  "description": "An e-commerce web React @App",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js --ignore client",
@@ -22,5 +22,10 @@
   "homepage": "https://github.com/lmartin214/reactive-strain-menu#readme",
   "devDependencies": {
     "concurrently": "^7.6.0"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.25.3",
+    "express": "^4.17.2",
+    "graphql": "^15.8.0"
   }
 }
