@@ -17,6 +17,10 @@ const strainSchema = new Schema({
     type: Number,
     required: true
   },
+  price: {
+    type: Number,
+    required: true
+  },
   terpeneProfile: {
     type: String,
     required: true
@@ -35,4 +39,6 @@ const strainSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('Strain', strainSchema);
+const Strain = model('Strain', strainSchema);
+
+module.exports = Strain;

@@ -7,19 +7,35 @@ const typeDefs = gql`
     email: String!
     password: String!
     shoppingCart: [Cart]
-    Cart: Int
+    Cart: Float!
   }
 
   type Cart {
     _id: ID
-    item: String!
-    price: Int!
+    product: String!
+    total: Float!
     quantity: Int!
+  }
+
+  type Strain {
+    name: String!
+    type: String!
+    thcContent: Float!
+    cbdContent: Float!
+    price: Float!
+    terpeneProfile: String!
+    effects: [String]!
+    flavorNotes: [String]!
+    availability: Boolean!
   }
 
   type Query {
     getUser(_id: ID!): User
     getUsers: [User]
+    getCart(_id: ID!): Cart
+    getCarts: [Cart]
+    getStrain(_id: ID!): Strain
+    getStrains: [Strain]
   }
 
   type Mutation {

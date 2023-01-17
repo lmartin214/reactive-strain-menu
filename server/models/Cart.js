@@ -1,32 +1,33 @@
-const { Schema } = require('mongoose');
+//Cart Schema
+const { Schema, model } = require('mongoose');
 
 const cartSchema = new Schema({
-    owner : {
-      type: ObjectID,
-       required: true,
-       ref: 'User'
-     },
-    items: [{
-      itemId: {
-       type: ObjectID,
-       ref: 'Strain',
-       required: true
-    },
-    name: String,
-    quantity: {
-       type: Number,
-       required: true,
-       min: 1,
-       default: 1},
-       price: Number
-     }],
-    bill: {
-        type: Number,
-        required: true,
-       default: 0
-      }
-    }, {
-    timestamps: true
-    })
+  // product references the given product schema
+  product: {
+    type: Schema.Types.ObjectId,
+    ref: 'Strain',
+    required: true
+  },
+  total: {
+    type: Number,
+    required: true
+  },
+  quantity: {
+    type: Number,
+    required: true
+  }
+});
 
-module.exports = cartSchema;
+// calculate the total when an item is added or removed from the cart
+cartSchema.pre('save', function(next) {
+  let total = 0;
+  for (let i = 0; i < this.product.length; i++) {
+    total += this.product[i].price * this.quantity[i];
+  }
+  this.total = total;
+  next();
+});
+
+const Cart = model('Cart', cartSchema);
+
+module.exports = Cart;

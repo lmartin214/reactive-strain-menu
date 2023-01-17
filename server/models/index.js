@@ -1,5 +1,5 @@
-const Admin = require('./Admin');
+const Cart = require('./Cart');
 const Strain = require('./Strain');
 const User = require('./User');
 
-module.exports = { Admin, Strain, User };
+module.exports = { Cart, Strain, User };
